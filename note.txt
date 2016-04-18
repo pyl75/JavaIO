@@ -1,0 +1,58 @@
+装修设计模式：
+对一组对象功能进行增强，就可以使用该模式解决一定的问题
+
+继承和装修设计模式都能实现此功能
+
+有什么区别？
+
+继承：首先有一个继承体系
+
+Writer:
+	|--PicWrtier:用于操作图片
+	|--MediaWriter:用于操作多媒体
+
+想要对它们进行一个效率的提高（加缓冲区）
+按照面向对象思想，实现继承 ，在原有功能加上缓冲区
+
+Writer:
+	|--PicWrtier:用于操作图片
+		|--BufferedPicWrtier:加入缓冲区
+			|--
+	|--MediaWriter:用于操作多媒体
+		|--BufferedMediaWrtier:加入缓冲区
+			|--
+			
+体系会越来越大，不愿意多看它一眼，显得臃肿（冗余）
+
+重新思考这个问题
+
+既然加入的都是同一种技术－缓冲
+
+让缓冲和具体的对象相结合
+
+class Buffer{
+	Buffer(PicWrtier pw){
+	
+	}
+	Buffer(MediaWriter mw){
+	}
+}
+class Buffer extends Writer{
+	Buffer(Writer w){
+		
+	}
+}
+Writer:
+	|--PicWrtier:用于操作图片		
+	|--MediaWriter:用于操作多媒体
+	|--BufferWriter:
+	
+装修比继承更加灵活。
+
+特点：装饰类和被装饰类必须同时所属一个父类或者同时实现一个接口。
+
+		
+
+
+	
+
